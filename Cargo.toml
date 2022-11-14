@@ -1,0 +1,12 @@
+[package]
+name = "async_streams_mre"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+futures = "0.3.25"
+rand = "0.8.5"
+streams = { git = "https://github.com/iotaledger/streams", version = "0.2.0" }
+tokio = { version = "1.21.2", features = ["full"] }
