@@ -2,10 +2,6 @@ use rand::{self, Rng};
 use streams::{id::Ed25519, transport::utangle::Client, User};
 use tokio::sync::mpsc::channel;
 
-fn random_bytes() -> [u8; 32] {
-    rand::thread_rng().gen()
-}
-
 #[tokio::main]
 async fn main() {
     const topic: &str = "TOPIC";
@@ -19,9 +15,9 @@ async fn main() {
     });
 
     tokio::spawn(async move {
-        let identity = Ed25519::from_seed(random_bytes());
+        let seed: [u8; 32] = rand::thread_rng().gen();
+        let identity = Ed25519::from_seed(seed);
         let transport: Client = Client::default();
-
         let mut user = User::builder()
             .with_identity(identity)
             .with_transport(transport)
